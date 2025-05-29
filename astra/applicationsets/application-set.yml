@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: multi-env-applications-manager
+  namespace: argocd
+spec:
+  # https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/GoTemplate/
+  goTemplate: true # enable to use golang syntax in the application set
+  goTemplateOptions: ["missingkey=error"] # error if the key is missing
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: http://git.example.com/jerry/gitops.git
+              revision: main
+              files:
+                - path: astra/**/config.json
+              directories:
+                - path: astra/applicationsets
+                  exclude: true # exclude the applicationsets folder
+          - list:
+              elementsYaml: |
+                {{- $envs := list -}}
+                {{- range $env, $config := .environments -}}
+                {{- $envs = append $envs (dict "env" $env) -}}
+                {{- end -}}
+                {{ $envs | toJson }}
+  template:
+    metadata:
+      name: '{{.path.basename}}-{{.env}}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: '{{.project}}'
+      destination:
+        name: '{{index .environments .env "clusterName"}}'
+        namespace: '{{.namespace}}'
+      sources:
+        - repoURL: '{{.source.repoURL}}'
+          targetRevision: '{{.source.targetRevision}}'
+          path: '{{.source.path}}'
+          helm:
+            valueFiles:
+              - values.yaml
+              - '{{index .environments .env "valuesFile"}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

@@ -1,0 +1,19 @@
+{
+    "project": "default",
+    "namespace": "backend",
+    "source": {
+        "repoURL": "https://github.com/dsfwoo8172/argocd-pratice.git",
+        "targetRevision": "main",
+        "path": "charts/hello-world"
+    },
+    "environments": {
+        "prod": {
+            "valuesFile": "values-prod.yaml",
+            "clusterName": "prod"
+        },
+        "test": {
+            "valuesFile": "values-test.yaml",
+            "clusterName": "in-cluster"
+        }
+    }
+}

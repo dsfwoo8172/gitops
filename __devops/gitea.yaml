@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: gitea
+    repoURL: https://dl.gitea.io/charts
+    targetRevision: 11.0.1
+    helm:
+      values: |
+        gitea:
+          config:
+            database:
+              DB_TYPE: postgres
+            indexer:
+              ISSUE_INDEXER_TYPE: bleve
+              REPO_INDEXER_ENABLED: true
+        ingress:
+          enabled: true
+          annotations:
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+            nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+            nginx.ingress.kubernetes.io/use-http: "true"
+        redis-cluster:
+          enabled: false
+        redis:
+          enabled: true
+        postgresql:
+          enabled: true
+        postgresql-ha:
+          enabled: false
+        persistence:
+          enabled: true
+            
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: gitea
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
