@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: multi-envs-applications-manager
+  name: astra-applications-manager
   namespace: argocd
 spec:
   # https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/GoTemplate/
