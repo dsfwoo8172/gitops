@@ -13,6 +13,7 @@ spec:
           - git:
               repoURL: http://git.example.com/jerry/gitops.git
               revision: main
+              requeueAfterSeconds: 60 # requeue after 60 seconds
               files:
                 - path: astra/**/config.json
           - list:

@@ -14,10 +14,6 @@
         "test": {
             "valuesFile": "values-test.yaml",
             "clusterName": "in-cluster"
-        },
-        "staging": {
-            "valuesFile": "values-staging.yaml",
-            "clusterName": "in-cluster"
         }
     }
 }
