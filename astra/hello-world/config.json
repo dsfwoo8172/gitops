@@ -4,7 +4,7 @@
     "source": {
         "repoURL": "http://git.example.com/jerry/helm-projects.git",
         "targetRevision": "main",
-        "path": "charts/hello-world"
+        "path": "astra/hello-world"
     },
     "environments": {
         "prod": {
