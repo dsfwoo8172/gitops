@@ -15,8 +15,7 @@ spec:
               revision: main
               files:
                 - path: astra/**/config.json
-              directories:
-                - path: astra/applicationsets
+                - path: astra/applicationsets/*
                   exclude: true # exclude the applicationsets folder
           - list:
               elementsYaml: |
