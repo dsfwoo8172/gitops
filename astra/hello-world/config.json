@@ -2,7 +2,7 @@
     "project": "default",
     "namespace": "backend",
     "source": {
-        "repoURL": "http://git.example.com/jerry/helm-projects.git",
+        "repoURL": "https://github.com/dsfwoo8172/helm-projects.git",
         "targetRevision": "main",
         "path": "astra/hello-world"
     },

@@ -11,7 +11,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: http://git.example.com/jerry/gitops.git
+              repoURL: https://github.com/dsfwoo8172/gitops.git
               revision: main
               requeueAfterSeconds: 60 # requeue after 60 seconds
               files:
