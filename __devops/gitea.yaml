@@ -20,6 +20,10 @@ spec:
             indexer:
               ISSUE_INDEXER_TYPE: bleve
               REPO_INDEXER_ENABLED: true
+            webhook:
+              ALLOWED_HOST_LIST: "*"
+              SKIP_TLS_VERIFY: "true"
+
         ingress:
           enabled: true
           annotations:
