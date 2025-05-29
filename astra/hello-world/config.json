@@ -2,7 +2,7 @@
     "project": "default",
     "namespace": "backend",
     "source": {
-        "repoURL": "https://github.com/dsfwoo8172/argocd-pratice.git",
+        "repoURL": "http://git.example.com/jerry/helm-projects.git",
         "targetRevision": "main",
         "path": "charts/hello-world"
     },
