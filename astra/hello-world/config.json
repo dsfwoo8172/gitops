@@ -4,7 +4,7 @@
     "image": {
         "repository": "jerry0702/nginx-pub",
         "registry": "docker.io",
-        "updateStrategy": "latest"
+        "updateStrategy": "newest-build"
     },
     "source": {
         "repoURL": "https://github.com/dsfwoo8172/helm-projects.git",
