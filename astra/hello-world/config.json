@@ -7,7 +7,7 @@
         "updateStrategy": "newest-build"
     },
     "source": {
-        "repoURL": "https://github.com/dsfwoo8172/helm-projects.git",
+        "repoURL": "git@github.com:dsfwoo8172/helm-projects.git",
         "targetRevision": "main",
         "path": "astra/hello-world"
     },
