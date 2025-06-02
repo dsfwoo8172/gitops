@@ -27,8 +27,14 @@ spec:
     metadata:
       name: '{{.path.basename}}-{{.env}}'
       annotations:
-        argocd-image-updater.argoproj.io/image-list: jerry0702/nginx-pub:~v0.1
+        argocd-image-updater.argoproj.io/image-list: '{{.image.repository}}'
+        argocd-image-updater.argoproj.io/update-strategy: '{{.image.updateStrategy}}'
         argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/git-branch: main
+        argocd-image-updater.argoproj.io/git-commit-message: 'chore({{.path.basename}}): update {{.env}} image to latest commit'
+        argocd-image-updater.argoproj.io/{{.image.repository}}.helm.image-name: image.repository
+        argocd-image-updater.argoproj.io/{{.image.repository}}.helm.image-tag: image.tag
+        argocd-image-updater.argoproj.io/{{.image.repository}}.force-update: 'true'
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
