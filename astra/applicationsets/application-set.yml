@@ -26,6 +26,8 @@ spec:
   template:
     metadata:
       name: '{{.path.basename}}-{{.env}}'
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: jerry0702/nginx-pub:~v0.1
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
