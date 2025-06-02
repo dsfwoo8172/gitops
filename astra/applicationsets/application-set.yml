@@ -28,6 +28,7 @@ spec:
       name: '{{.path.basename}}-{{.env}}'
       annotations:
         argocd-image-updater.argoproj.io/image-list: jerry0702/nginx-pub:~v0.1
+        argocd-image-updater.argoproj.io/write-back-method: git
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
